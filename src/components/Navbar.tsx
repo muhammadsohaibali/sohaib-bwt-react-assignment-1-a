@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <nav className="border-gray-200 bg-white dark:bg-gray-900">
       <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
@@ -15,12 +19,14 @@ const Navbar = () => {
             Flowbite
           </span>
         </a>
+
         <button
           data-collapse-toggle="navbar-default"
           type="button"
           className="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
           aria-controls="navbar-default"
           aria-expanded="false"
+          onClick={() => setIsOpen(!isOpen)}
         >
           <span className="sr-only">Open main menu</span>
           <svg
@@ -39,8 +45,16 @@ const Navbar = () => {
             />
           </svg>
         </button>
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse dark:border-gray-700 dark:bg-gray-800 md:dark:bg-gray-900">
+
+        <div
+          id="navbar-default"
+          className={`${
+            isOpen
+              ? 'fixed top-0 left-0 h-full w-64 bg-gray-800 text-white p-6 md:hidden'
+              : 'hidden md:block md:w-auto'
+          }`}
+        >
+          <ul className="mt-4 flex flex-col bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse dark:border-gray-700 dark:bg-gray-800 md:dark:bg-gray-900">
             <li>
               <a
                 href="#"
